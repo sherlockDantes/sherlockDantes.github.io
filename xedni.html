@@ -30,6 +30,8 @@
             zonaMensajes.innerHTML += "Mensaje desde: " + e.origin + "<br>";
 
             zonaMensajes.innerHTML += "Mensaje: " + e.data + "<br>";
+
+            e.source.postMessage("Mensaje recibido correctamente.", e.origin);
         }
 
         window.addEventListener("load", comenzar, false);
