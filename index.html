@@ -9,9 +9,25 @@
     <style>
         div {
             font-size: larger;
-            width: 550px;
+            width: 900px;
             text-align: center;
             margin: auto;
+        }
+
+        #zonaDatos {
+            float: left;
+        }
+
+        #zonaRecepcion {
+            float: left;
+            margin-left: 192px;
+            width: 350px;
+            height: 350px;
+            border: solid black 2px;
+        }
+
+        #zonaForm {
+            clear: both;
         }
 
         iframe {
@@ -22,10 +38,14 @@
         let boton;
         let marco;
         let mensaje;
+        let zonaRecepcion;
         function comenzar() {
             boton = document.getElementById("boton");
+            zonaRecepcion = document.getElementById("zonaRecepcion");
 
             boton.addEventListener("click", enviar, false);
+
+            window.addEventListener("message", recepcionar, false);
         }
 
         function enviar() {
@@ -33,6 +53,10 @@
             mensaje = document.getElementById("mensaje").value;
 
             marco.contentWindow.postMessage(mensaje, "*");
+        }
+
+        function recepcionar(e) {
+            zonaRecepcion.innerHTML += e.data;
         }
 
         window.addEventListener("load", comenzar, false);
@@ -44,8 +68,14 @@
         <section id="zonaDatos">
             <iframe src="xedni.html" height="350px" width="350px" id="marco"></iframe>
         </section>
+
+        <section id="zonaRecepcion">
+            Mensaje desde página recepción
+        </section>
+
         <br>
         <br>
+
         <section id="zonaForm">
             <form action="" name="formulario">
                 <label for="mensaje">
