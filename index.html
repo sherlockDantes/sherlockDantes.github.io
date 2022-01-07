@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Píldoras Informáticas</title>
+    <style>
+        div {
+            width: 500px;
+            text-align: center;
+            margin: auto;
+        }
+
+        section {
+            margin: 10px;
+            padding: 50px;
+            border: solid black 3px;
+        }
+    </style>
+    <script>
+        let nombre;
+        let apellido;
+        let zonaDatos;
+        let boton;
+        function comenzar() {
+            nombre = document.getElementById("nombre").value;
+
+            apellido = document.getElementById("apellido").value;
+
+            zonaDatos = document.getElementById("zonaDatos");
+
+            boton = document.getElementById("boton");
+
+            boton.addEventListener("click", enviarDatos, false);
+        }
+
+        function enviarDatos() {
+            let datos = new FormData();
+
+            datos.append("Nombre", nombre);
+            datos.append("Apellido", apellido);
+
+            let url = "procesar.php";
+
+            let solicitud = new XMLHttpRequest();
+
+            solicitud.addEventListener("load", mostrar, false);
+
+            solicitud.open("POST", url, true);
+
+            solicitud.send(datos);
+        }
+
+        function mostrar(e) {
+            zonaDatos.innerHTML = e.target.responseText;
+        }
+
+        window.addEventListener("load", comenzar, false);
+    </script>
+</head>
+
+<body>
+    <div id="contenedor">
+        <section id="zonaForm">
+            <form action="" name="formulario">
+                <label for="nombre">
+                    Nombre
+                    <input type="text" id="nombre" name="nombre">
+                </label>
+                <br>
+                <br>
+                <label for="apellido">
+                    Apellido
+                    <input type="text" id="apellido" name="apellido">
+                </label>
+                <br>
+                <br>
+                <input type="button" name="boton" id="boton" value="Enviar">
+            </form>
+        </section>
+
+        <section id="zonaDatos">
+            No hay información
+        </section>
+    </div>
+</body>
+
+</html>
