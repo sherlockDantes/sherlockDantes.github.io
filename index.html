@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Píldoras Informáticas</title>
+    <style>
+        div {
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+            margin: auto;
+        }
+
+        #zonaForm {
+            padding: 10px;
+            border: gray 2px solid;
+        }
+
+        #zonaDatos {
+            padding: 10px;
+            border: gray 2px solid;
+        }
+    </style>
+    <script>
+        let nombre;
+        let boton;
+        let zonaDatos;
+        let trabajador;
+        function comenzar() {
+            nombre = document.getElementById("nombre").value;
+
+            boton = document.getElementById("boton");
+
+            zonaDatos = document.getElementById("zonaDatos");
+
+            boton.addEventListener("click", enviar, false);
+
+            trabajador = new Worker("trabajador.js");
+
+            trabajador.addEventListener("message", recibir, false);
+        }
+
+        function enviar() {
+            trabajador.postMessage(nombre);
+        }
+
+        function recibir(e) {
+            zonaDatos.innerHTML = e.data;
+        }
+
+        window.addEventListener("load", comenzar, false);
+    </script>
+</head>
+
+<body>
+    <div>
+        <section id="zonaForm">
+            <form action="" name="formulario">
+                <label for="nombre">
+                    Nombre:
+                    <input type="text" name="nombre" id="nombre">
+                </label>
+                <br>
+                <br>
+                <input type="button" name="boton" id="boton" value="Enviar">
+            </form>
+        </section>
+
+        <br>
+        <br>
+
+        <section id="zonaDatos">
+
+        </section>
+    </div>
+</body>
+
+</html>
