@@ -52,10 +52,11 @@
             marco = document.getElementById("marco");
             mensaje = document.getElementById("mensaje").value;
 
-            marco.contentWindow.postMessage(mensaje, "*");
+            marco.contentWindow.postMessage(mensaje, "https://sherlockdantes.github.io");
         }
 
         function recepcionar(e) {
+            console.log(e);
             zonaRecepcion.innerHTML += "<br>" + e.data;
         }
 
