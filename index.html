@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Píldoras Informáticas</title>
+    <style>
+        div {
+            font-size: larger;
+            width: 550px;
+            text-align: center;
+            margin: auto;
+        }
+
+        iframe {
+            border: solid black 2px;
+        }
+    </style>
+    <script>
+        let boton;
+        let marco;
+        let mensaje;
+        function comenzar() {
+            boton = document.getElementById("boton");
+
+            boton.addEventListener("click", enviar, false);
+        }
+
+        function enviar() {
+            marco = document.getElementById("marco");
+            mensaje = document.getElementById("mensaje");
+
+            marco.contentWindow.postMessage(mensaje, "*");
+        }
+
+        window.addEventListener("load", comenzar, false);
+    </script>
+</head>
+
+<body>
+    <div>
+        <section id="zonaDatos">
+            <iframe src="xedni.html" height="350px" width="350px" id="marco"></iframe>
+        </section>
+        <br>
+        <br>
+        <section id="zonaForm">
+            <form action="" name="formulario">
+                <label for="mensaje">
+                    Mensaje:
+                    <br>
+                    <textarea name="mensaje" id="mensaje" cols="30" rows="10" required></textarea>
+                </label>
+                <br>
+                <input type="button" name="boton" id="boton" value="Enviar Mensaje">
+            </form>
+        </section>
+    </div>
+</body>
+
+</html>
