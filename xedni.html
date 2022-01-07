@@ -27,11 +27,15 @@
         function recepcionar(e) {
             zonaMensajes = document.getElementById("zonaMensajes");
 
-            zonaMensajes.innerHTML += "Mensaje desde: " + e.origin + "<br>";
+            if (e.origin == "https://sherlockdantes.github.io") {
+                zonaMensajes.innerHTML += "Mensaje desde: " + e.origin + "<br>";
 
-            zonaMensajes.innerHTML += "Mensaje: " + e.data + "<br>";
+                zonaMensajes.innerHTML += "Mensaje: " + e.data + "<br>";
 
-            e.source.postMessage("Mensaje recibido correctamente.", e.origin);
+                e.source.postMessage("Mensaje recibido correctamente.", e.origin);
+            } else {
+                e.source.postMessage("Mensaje erróneo.", e.origin);
+            }
         }
 
         window.addEventListener("load", comenzar, false);
