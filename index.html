@@ -30,7 +30,7 @@
 
         function enviar() {
             marco = document.getElementById("marco");
-            mensaje = document.getElementById("mensaje");
+            mensaje = document.getElementById("mensaje").value;
 
             marco.contentWindow.postMessage(mensaje, "*");
         }
