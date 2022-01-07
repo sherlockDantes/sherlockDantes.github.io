@@ -30,8 +30,6 @@
         let zonaDatos;
         let trabajador;
         function comenzar() {
-            nombre = document.getElementById("nombre").value;
-
             boton = document.getElementById("boton");
 
             zonaDatos = document.getElementById("zonaDatos");
@@ -44,6 +42,7 @@
         }
 
         function enviar() {
+            nombre = document.getElementById("nombre").value;
             trabajador.postMessage(nombre);
             console.log(nombre);
         }
