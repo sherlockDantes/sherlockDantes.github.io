@@ -1,5 +1,6 @@
 let cache;
 function comenzar() {
+    alert("Hola");
     cache = window.applicationCache;
 
     cache.addEventListener("error", errores, false);
